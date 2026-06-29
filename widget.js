@@ -276,7 +276,14 @@
             </div>
             <div style={{display:"flex",gap:10}}>
               <button onClick={handleRestart} style={{flex:1,padding:13,borderRadius:8,border:"1px solid #d1d5db",background:"#fff",fontSize:15,fontWeight:500,cursor:"pointer",color:"#374151"}}>Retake</button>
-              <button onClick={()=>{const s=document.createElement('style');s.id='pf';s.innerHTML='@media print{@page{margin:0.6in}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}*{overflow:visible!important;max-height:none!important}button{display:none!important}}';document.head.appendChild(s);window.print();setTimeout(()=>{const e=document.getElementById('pf');if(e)e.remove();},1500);}} style={{flex:1,padding:13,borderRadius:8,border:"none",background:"#111",fontSize:15,fontWeight:600,cursor:"pointer",color:"#fff"}}>Download PDF</button>
+              <button onClick={()=>{
+  const s=document.createElement('style');
+  s.id='pf';
+  s.innerHTML='@media print{@page{margin:0.6in;size:letter}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}*{overflow:visible!important;max-height:none!important;height:auto!important}button{display:none!important}}';
+  document.head.appendChild(s);
+  window.print();
+  setTimeout(()=>{const e=document.getElementById('pf');if(e)e.remove();},1500);
+}} style={{flex:1,padding:13,borderRadius:8,border:"none",background:"#111",fontSize:15,fontWeight:600,cursor:"pointer",color:"#fff"}}>Download PDF</button>
             </div>
           </div>
         );
