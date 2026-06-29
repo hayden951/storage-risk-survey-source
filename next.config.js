@@ -1,8 +1,21 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  async headers() {
-    return [{ source: "/widget.js", headers: [{ key: "Access-Control-Allow-Origin", value: "*" }] }];
+{
+  "name": "survey-widget",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.4.0",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/node": "^20"
   }
-};
-module.exports = nextConfig;
- 
+}
