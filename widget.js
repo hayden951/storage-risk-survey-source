@@ -27,10 +27,10 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; box-shadow: 0 4px 24px rgba(0,0,0,0.35);
       z-index: 99999; transition: transform 0.2s;
-      animation: srq-pulse 2.5s infinite;
+      animation: srq-pulse 4s infinite;
     }
     #srq-bubble:hover { transform: scale(1.1); }
-    #srq-bubble.clicked { animation: srq-pop 0.35s ease forwards; }
+    #srq-bubble.clicked { animation: srq-pop 0.6s ease forwards; }
     #srq-tooltip {
       position: fixed; bottom: 94px; right: 28px; background: #fff; color: #111;
       font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 8px;
@@ -55,7 +55,7 @@
       background: #f9fafb; border-radius: 16px; width: 100%; max-width: 480px;
       height: 82vh; max-height: 780px; overflow-y: auto;
       box-shadow: 0 24px 80px rgba(0,0,0,0.5); display: flex; flex-direction: column;
-      animation: srq-slidein 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: srq-slidein 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
     #srq-header {
       display: flex; align-items: center; justify-content: space-between;
