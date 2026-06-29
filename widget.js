@@ -10,14 +10,27 @@
   // Inject styles
   var style = document.createElement('style');
   style.innerHTML = `
-    #srq-bubble {
-      position: fixed; bottom: 28px; right: 28px; width: 56px; height: 56px;
-      background: #111; border: 1px solid #333; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      z-index: 99999; transition: transform 0.2s;
+    @keyframes srq-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(17,17,17,0.5); }
+      70% { box-shadow: 0 0 0 14px rgba(17,17,17,0); }
+      100% { box-shadow: 0 0 0 0 rgba(17,17,17,0); }
     }
-    #srq-bubble:hover { transform: scale(1.08); }
+    @keyframes srq-pop {
+      0% { transform: scale(1); }
+      30% { transform: scale(0.85); }
+      65% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+    #srq-bubble {
+      position: fixed; bottom: 28px; right: 28px; width: 60px; height: 60px;
+      background: #111; border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+      z-index: 99999; transition: transform 0.2s;
+      animation: srq-pulse 2.5s infinite;
+    }
+    #srq-bubble:hover { transform: scale(1.1); }
+    #srq-bubble.clicked { animation: srq-pop 0.35s ease forwards; }
     #srq-tooltip {
       position: fixed; bottom: 94px; right: 28px; background: #fff; color: #111;
       font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 8px;
@@ -28,15 +41,21 @@
       content: ''; position: absolute; bottom: -6px; right: 20px;
       width: 12px; height: 12px; background: #fff; transform: rotate(45deg); border-radius: 2px;
     }
+    @keyframes srq-slidein {
+      from { opacity: 0; transform: translateY(40px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
     #srq-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-      z-index: 999999; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 999999; align-items: flex-end; justify-content: flex-end;
+      backdrop-filter: blur(3px); padding: 24px;
     }
     #srq-overlay.open { display: flex; }
     #srq-modal {
-      background: #f9fafb; border-radius: 16px; width: 90%; max-width: 600px;
-      height: 85vh; max-height: 800px; overflow-y: auto;
+      background: #f9fafb; border-radius: 16px; width: 100%; max-width: 480px;
+      height: 82vh; max-height: 780px; overflow-y: auto;
       box-shadow: 0 24px 80px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+      animation: srq-slidein 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
     #srq-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -58,7 +77,7 @@
     <div id="srq-bubble"
       onmouseenter="document.getElementById('srq-tooltip').style.display='block'"
       onmouseleave="document.getElementById('srq-tooltip').style.display='none'"
-      onclick="document.getElementById('srq-overlay').classList.add('open');document.body.style.overflow='hidden'">
+      onclick="this.classList.add('clicked');setTimeout(()=>this.classList.remove('clicked'),350);document.getElementById('srq-overlay').classList.add('open');document.body.style.overflow='hidden'">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
         <rect x="9" y="3" width="6" height="4" rx="1"/>
