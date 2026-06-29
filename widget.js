@@ -55,7 +55,7 @@
       background: #f9fafb; border-radius: 16px; width: 100%; max-width: 480px;
       height: 82vh; max-height: 780px; overflow-y: auto;
       box-shadow: 0 24px 80px rgba(0,0,0,0.5); display: flex; flex-direction: column;
-      animation: srq-slidein 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      animation: srq-slidein 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
     #srq-header {
       display: flex; align-items: center; justify-content: space-between;
