@@ -277,12 +277,20 @@
             <div style={{display:"flex",gap:10}}>
               <button onClick={handleRestart} style={{flex:1,padding:13,borderRadius:8,border:"1px solid #d1d5db",background:"#fff",fontSize:15,fontWeight:500,cursor:"pointer",color:"#374151"}}>Retake</button>
               <button onClick={()=>{
+  const root=document.getElementById('srq-root');
+  const clone=root.cloneNode(true);
+  clone.id='print-clone';
+  clone.style.cssText='position:static;width:100%;background:#f9fafb;padding:24px;box-sizing:border-box;';
+  document.body.appendChild(clone);
   const s=document.createElement('style');
   s.id='pf';
-  s.innerHTML='@media print{@page{margin:0.6in;size:letter}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}*{overflow:visible!important;max-height:none!important;height:auto!important}button{display:none!important}}';
+  s.innerHTML='@media print{@page{margin:0.6in;size:letter}#srq-overlay,#srq-bubble,#srq-tooltip{display:none!important}#print-clone{display:block!important}body > *:not(#print-clone){display:none!important}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}*{overflow:visible!important;max-height:none!important;height:auto!important}button{display:none!important}}';
   document.head.appendChild(s);
   window.print();
-  setTimeout(()=>{const e=document.getElementById('pf');if(e)e.remove();},1500);
+  setTimeout(()=>{
+    const e=document.getElementById('pf');if(e)e.remove();
+    const c=document.getElementById('print-clone');if(c)c.remove();
+  },1500);
 }} style={{flex:1,padding:13,borderRadius:8,border:"none",background:"#111",fontSize:15,fontWeight:600,cursor:"pointer",color:"#fff"}}>Download PDF</button>
             </div>
           </div>
